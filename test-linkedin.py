@@ -23,7 +23,7 @@ def main():
             # Generate the post using GPT-4
             try:
                 response = openai.Completion.create(
-                    engine="gpt-4-32k",  # Replace with the correct GPT-4 engine ID
+                    engine="gpt-4-0314",  # Replace with the correct GPT-4 engine ID
                     prompt=prompt_text,
                     max_tokens=200  # You can adjust the max_tokens as needed
                 )
