@@ -15,13 +15,19 @@ def main():
     # Input field for the desired post topic
     post_topic = st.text_input(f'What do you want your {platform} post to be about?', max_chars=400)
     
+    # Input field for the goal of the post
+    post_goal = st.text_input('What is the goal of your post? (e.g., reach, getting leads, etc.)')
+
+    # Dropdown for selecting the hook style
+    hook_style = st.selectbox('Choose your hook style', ['Question Hook', 'Fact/Statistic Hook', 'Quotation Hook', 'Personal Story Hook', 'Shocking Statement Hook', 'Humor Hook', 'Challenge Hook', 'Curiosity Hook', 'Prediction Hook', 'Problem Hook'])
+    
     if st.button('Generate Post'):
-        if openai_api_key and post_topic:
+        if openai_api_key and post_topic and post_goal:
             # Set API key
             openai.api_key = openai_api_key
             
             # Create the GPT-4 prompt
-            prompt_text = f"Act as a highly experienced {platform} professional and craft a very compelling and interesting {platform} post out of the following information: {post_topic}"
+            prompt_text = f"Act as a highly experienced {platform} professional. The goal of the post is {post_goal}. Using the {hook_style}, craft a very compelling and interesting {platform} post out of the following information: {post_topic}"
             
             # Generate the post using GPT-4
             try:
@@ -37,7 +43,7 @@ def main():
             except Exception as e:
                 st.write(str(e))
         else:
-            st.write('Please enter both your OpenAI API key and the topic for your post.')
+            st.write('Please enter your OpenAI API key, the topic for your post, and the goal of your post.')
         
 if __name__ == "__main__":
     main()
