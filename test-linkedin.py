@@ -21,19 +21,18 @@ def main():
             prompt_text = f"Act as a highly experienced LinkedIn professional and craft a very compelling and interesting LinkedIn post out of the following information: {post_topic}"
             
             # Generate the post using GPT-4
-try:
-    response = openai.ChatCompletion.create(
-        model="gpt-4-0314",
-        messages=[
-            {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": prompt_text}
-        ]
-    )
+            try:
+                response = openai.ChatCompletion.create(
+                    model="gpt-4-0314",
+                    messages=[
+                        {"role": "system", "content": "You are a helpful assistant."},
+                        {"role": "user", "content": prompt_text}
+                    ]
+                )
 
-    st.write(response['choices'][0]['message']['content'])
-except Exception as e:
-    st.write(str(e))
-
+                st.write(response['choices'][0]['message']['content'])
+            except Exception as e:
+                st.write(str(e))
         else:
             st.write('Please enter both your OpenAI API key and the LinkedIn post topic.')
         
