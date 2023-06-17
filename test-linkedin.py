@@ -85,7 +85,7 @@ def main():
             # Generate the post using GPT-4
             try:
                 response = openai.ChatCompletion.create(
-                    model="gpt-4.0-turbo",
+                    model="gpt-4-0314",
                     messages=[
                         {"role": "system", "content": "You are a helpful assistant."},
                         {"role": "user", "content": prompt_text}
