@@ -27,6 +27,7 @@ def main():
     # Input field for entering a custom target group
     target_group_custom = st.text_input('Or enter your own target group')
 
+    target_group = None
     if target_group_dropdown != 'None selected' and target_group_custom:
         st.warning('Please select a target group from the dropdown menu or enter your own, not both.')
     elif target_group_dropdown != 'None selected':
@@ -35,7 +36,7 @@ def main():
         target_group = target_group_custom
 
     if st.button('Generate Post'):
-        if openai_api_key and post_topic and post_goal and (target_group_dropdown != 'None selected' or target_group_custom):
+        if openai_api_key and post_topic and post_goal and target_group:
             # Set API key
             openai.api_key = openai_api_key
             
@@ -57,7 +58,7 @@ def main():
                 st.write(str(e))
         else:
             st.write('Please enter your OpenAI API key, the topic for your post, the goal of your post, and select or enter a target group.')
-    elif target_group_dropdown == 'None selected' and not target_group_custom:
+    elif target_group is None:
         st.warning('Please select a target group from the dropdown menu or enter your own.')
 
 if __name__ == "__main__":
