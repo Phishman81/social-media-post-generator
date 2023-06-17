@@ -53,6 +53,8 @@ def main():
                 st.write(str(e))
         else:
             st.write('Please enter your OpenAI API key, the topic for your post, the goal of your post, and select or enter a target group.')
-        
+    elif target_group == 'None selected':
+        st.warning('Please select a target group from the dropdown menu or enter your own.')
+
 if __name__ == "__main__":
     main()
