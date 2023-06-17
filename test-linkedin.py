@@ -18,6 +18,18 @@ def main():
     # Input field for the goal of the post
     post_goal = st.text_input('What is the goal of your post? (e.g., reach, getting leads, etc.)')
 
+    # Dropdown for selecting the content length
+    content_length = st.selectbox('Choose your content length', ['Short: less than 80 characters', 'Compact: 80-250 characters', 'Medium: 250-600 characters', 'Long: more than 600 characters'])
+
+    # Dropdown for selecting the hashtags
+    hashtags = st.selectbox('Choose your hashtag preference', ['None', 'Just one', 'A few', 'Many'])
+
+    # Dropdown for selecting the emojis
+    emojis = st.selectbox('Choose your emoji preference', ['None', 'Just one', 'A few', 'Many'])
+
+    # Dropdown for selecting the list type
+    list_type = st.selectbox('Choose your list type', ['None', 'Short list (1-3 points)', 'Compact list (3-5 points)', 'Medium list (5-7 points)', 'Long list (10 points or more)', 'Short list with emojis (1-3 points)', 'Compact list with emojis (3-5 points)', 'Medium list with emojis (5-7 points)', 'Long list with emojis (10 points or more)'])
+
     # Dropdown for selecting the hook style
     hook_style = st.selectbox('Choose your hook style', ['Question Hook', 'Fact/Statistic Hook', 'Quotation Hook', 'Personal Story Hook', 'Shocking Statement Hook', 'Humor Hook', 'Challenge Hook', 'Curiosity Hook', 'Prediction Hook', 'Problem Hook'])
 
@@ -80,7 +92,7 @@ def main():
             openai.api_key = openai_api_key
 
             # Create the GPT-4 prompt
-            prompt_text = f"Act as a highly experienced {platform} professional. The target group is {target_group}. The goal of the post is {post_goal}. The communication style is {communication_style}. The selected language is {language}. Using the {hook_style}, craft a very compelling and interesting {platform} post out of the following information: {post_topic}"
+            prompt_text = f"Act as a highly experienced {platform} professional. The target group is {target_group}. The goal of the post is {post_goal}. The communication style is {communication_style}. The selected language is {language}. Using the {hook_style}, the desired content length is {content_length}, with a preference for {hashtags} hashtags, {emojis} emojis, and a {list_type}. Craft a very compelling and interesting {platform} post out of the following information: {post_topic}"
 
             # Generate the post using GPT-4
             try:
