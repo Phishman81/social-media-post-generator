@@ -21,19 +21,19 @@ def main():
     # Dropdown for selecting the hook style
     hook_style = st.selectbox('Choose your hook style', ['Question Hook', 'Fact/Statistic Hook', 'Quotation Hook', 'Personal Story Hook', 'Shocking Statement Hook', 'Humor Hook', 'Challenge Hook', 'Curiosity Hook', 'Prediction Hook', 'Problem Hook'])
 
-    # Dropdown for selecting the target group
-    target_group_dropdown = st.selectbox('Choose your target group', ['Small Business Owners', 'Tech Startups', 'Healthcare Professionals', 'Educators', 'Freelancers', 'Millennials', 'Parents', 'Senior Citizens', 'Fitness Enthusiasts', 'Travelers'])
+    # Dropdown for selecting the target group, with "None selected" as the default option
+    target_group_dropdown = st.selectbox('Choose your target group', ['None selected', 'Small Business Owners', 'Tech Startups', 'Healthcare Professionals', 'Educators', 'Freelancers', 'Millennials', 'Parents', 'Senior Citizens', 'Fitness Enthusiasts', 'Travelers'])
     
     # Input field for entering a custom target group
     target_group_custom = st.text_input('Or enter your own target group')
 
+    # Use the custom target group if provided, otherwise use the selected target group
+    target_group = target_group_custom if target_group_custom else target_group_dropdown
+
     if st.button('Generate Post'):
-        if openai_api_key and post_topic and post_goal:
+        if openai_api_key and post_topic and post_goal and target_group != 'None selected':
             # Set API key
             openai.api_key = openai_api_key
-            
-            # Use the custom target group if provided, otherwise use the selected target group
-            target_group = target_group_custom if target_group_custom else target_group_dropdown
             
             # Create the GPT-4 prompt
             prompt_text = f"Act as a highly experienced {platform} professional. The target group is {target_group}. The goal of the post is {post_goal}. Using the {hook_style}, craft a very compelling and interesting {platform} post out of the following information: {post_topic}"
@@ -52,7 +52,7 @@ def main():
             except Exception as e:
                 st.write(str(e))
         else:
-            st.write('Please enter your OpenAI API key, the topic for your post, and the goal of your post.')
+            st.write('Please enter your OpenAI API key, the topic for your post, the goal of your post, and select or enter a target group.')
         
 if __name__ == "__main__":
     main()
