@@ -65,17 +65,15 @@ def main():
 
     # Dropdown for selecting the language
     language = st.selectbox('Language', [
-        'Arabic',
-        'Bengali',
-        'English',
-        'French',
+       
         'German',
+        'English (UK)',
+        'English (US)',
+        'French',
         'Italian',
         'Portuguese',
         'Russian',
-        'Spanish',
-        'Turkish',
-        'Ukrainian'
+        'Spanish'
     ], index=0)
 
     target_group = None
