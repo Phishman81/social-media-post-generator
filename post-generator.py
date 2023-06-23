@@ -7,7 +7,7 @@ def main():
     st.title('Social Media Post Generator with GPT-4')
 
     # Input field for user's OpenAI API key
-    openai_api_key = st.text_input('Enter your OpenAI API key')
+    openai_api_key = st.secrets["openai"]["key"]
 
     # Dropdown for selecting the social media platform
     platform = st.selectbox('Choose your social media platform', ['LinkedIn', 'Instagram', 'Facebook', 'YouTube', 'TikTok', 'Snapchat', 'Google Profile Page'])
