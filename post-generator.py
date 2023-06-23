@@ -41,6 +41,7 @@ def main():
 
     # Dropdown for selecting the communication style
     communication_style = st.selectbox('Choose your communication style', [
+        'None selected',
         'Formal',
         'Informal',
         'Professional',
@@ -61,9 +62,9 @@ def main():
         'Positive',
         'Neutral',
         'Assertive'
-    ], key="comm_style")
+    ], index=0)
 
-    # Input field for entering example text for style
+    # Text area for pasting text for analyzing communication style
     example_text_for_style = st.text_area('Or paste text for analyzing communication style', key="example_style")
 
     # Dropdown for selecting the language
@@ -86,8 +87,11 @@ def main():
     elif target_group_custom:
         target_group = target_group_custom
 
-    if example_text_for_style and communication_style != 'Formal':
+    if example_text_for_style and communication_style != 'None selected':
         st.warning('Please either select a communication style or paste example text, not both.')
+        return
+    elif example_text_for_style == "" and communication_style == 'None selected':
+        st.warning('Please either select a communication style or paste example text.')
         return
 
     if st.button('Generate Post'):
@@ -97,10 +101,10 @@ def main():
 
             if example_text_for_style:
                 # Use example text for style if provided
-                prompt_text = f"Act as a highly experienced {platform} professional and craft a very compelling and interesting {platform} post out of the following information: {post_topic} The target group is {target_group}. The goal of the post is {post_goal}. The selected language is {language}. Using the {hook_style}, the desired content length is {content_length}, with a preference for {hashtags} hashtags, {emojis} emojis, and a {list_type}. In your response, capture the same tone and writing style and replicate the author's voice and how they express themselves in this text example: {example_text_for_style}.without incorporating any of the examples content. "
+                prompt_text = f"Act as a highly experienced {platform} professional and craft a very compelling and interesting {platform} post out of the following information: {post_topic} The target group is {target_group}. The goal of the post is {post_goal}. The selected language is {language}. Using the {hook_style}, the desired content length is {content_length}, with a preference for {hashtags} hashtags, {emojis} emojis, and a {list_type}. In your response, capture the same tone and writing style and replicate the author's voice and how they express themselves in this text example: {example_text_for_style} - without incorporating any of the examples content."
             else:
                 # Use the selected communication style otherwise
-                prompt_text = f"Act as a highly experienced {platform} professional and craft a very compelling and interesting {platform} post out of the following information: {post_topic} The target group is {target_group}. The goal of the post is {post_goal}. The communication style is {communication_style}. The selected language is {language}. Using the {hook_style}, the desired content length is {content_length}, with a preference for {hashtags} hashtags, {emojis} emojis, and a {list_type}. Craft a very compelling and interesting {platform} post out of the following information: {post_topic}"
+                prompt_text = f"Act as a highly experienced {platform} professional and craft a very compelling and interesting {platform} post out of the following information: {post_topic} The target group is {target_group}. The goal of the post is {post_goal}. The communication style is {communication_style}. The selected language is {language}. Using the {hook_style}, the desired content length is {content_length}, with a preference for {hashtags} hashtags, {emojis} emojis, and a {list_type}."
 
             # Generate the post using GPT-4
             try:
