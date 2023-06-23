@@ -61,11 +61,13 @@ def main():
         'Positive',
         'Neutral',
         'Assertive'
-    ])
+    ], key="comm_style")
+
+    # Input field for entering example text for style
+    example_text_for_style = st.text_area('Or paste text for analyzing communication style', key="example_style")
 
     # Dropdown for selecting the language
     language = st.selectbox('Language', [
-       
         'German',
         'English (UK)',
         'English (US)',
@@ -84,13 +86,21 @@ def main():
     elif target_group_custom:
         target_group = target_group_custom
 
+    if example_text_for_style and communication_style != 'Formal':
+        st.warning('Please either select a communication style or paste example text, not both.')
+        return
+
     if st.button('Generate Post'):
         if openai_api_key and post_topic and post_goal and target_group:
             # Set API key
             openai.api_key = openai_api_key
 
-            # Create the GPT-4 prompt
-            prompt_text = f"Act as a highly experienced {platform} professional. The target group is {target_group}. The goal of the post is {post_goal}. The communication style is {communication_style}. The selected language is {language}. Using the {hook_style}, the desired content length is {content_length}, with a preference for {hashtags} hashtags, {emojis} emojis, and a {list_type}. Craft a very compelling and interesting {platform} post out of the following information: {post_topic}"
+            if example_text_for_style:
+                # Use example text for style if provided
+                prompt_text = f"Analyze the following text to understand the communication style: {example_text_for_style}. Then, act as a highly experienced {platform} professional. The target group is {target_group}. The goal of the post is {post_goal}. The selected language is {language}. Using the {hook_style}, the desired content length is {content_length}, with a preference for {hashtags} hashtags, {emojis} emojis, and a {list_type}. Craft a very compelling and interesting {platform} post out of the following information: {post_topic}"
+            else:
+                # Use the selected communication style otherwise
+                prompt_text = f"Act as a highly experienced {platform} professional. The target group is {target_group}. The goal of the post is {post_goal}. The communication style is {communication_style}. The selected language is {language}. Using the {hook_style}, the desired content length is {content_length}, with a preference for {hashtags} hashtags, {emojis} emojis, and a {list_type}. Craft a very compelling and interesting {platform} post out of the following information: {post_topic}"
 
             # Generate the post using GPT-4
             try:
@@ -112,4 +122,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
