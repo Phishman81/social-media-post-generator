@@ -51,10 +51,10 @@ def main():
     platform = st.selectbox('Choose your social media platform', ['LinkedIn', 'Instagram', 'Facebook', 'YouTube', 'TikTok', 'Snapchat', 'Google Profile Page'])
 
     # Input field for the desired post topic
-    post_topic = st.text_input(f'What do you want your {platform} post to be about?', max_chars=400, value='', key="post_topic", help="Enter the topic of your post (e.g., latest marketing trends)")
+    post_topic = st.text_input(f'What do you want your {platform} post to be about?', max_chars=400, value='Enter the topic of your post (e.g., latest marketing trends)')
 
     # Input field for the goal of the post
-    post_goal = st.text_input('What is the goal of your post? (e.g., reach, getting leads, etc.)', value='', key="post_goal", help="Specify the goal of your post (e.g., increase engagement)")
+    post_goal = st.text_input('What is the goal of your post? (e.g., reach, getting leads, etc.)', value='Specify the goal of your post (e.g., increase engagement)')
 
     # Dropdown for selecting the content length
     content_length = st.selectbox('Choose your content length', ['Short: less than 80 characters', 'Compact: 80-250 characters', 'Medium: 250-600 characters', 'Long: more than 600 characters'], index=0, help="Select the desired length of your post")
@@ -103,7 +103,7 @@ def main():
     ], index=0)
 
     # Text area for pasting text for analyzing communication style
-    example_text_for_style = st.text_area('Or paste example text to copy the tone of voice & communication style to your post', max_chars=500, key="example_style", help="Paste example text to copy the tone of voice and communication style to your post")
+    example_text_for_style = st.text_area('Or paste example text to copy the tone of voice & communication style to your post', max_chars=500, key="example_style", value='Paste example text to copy the tone of voice and communication style to your post')
 
     # Dropdown for selecting the language
     language = st.selectbox('Language', [
