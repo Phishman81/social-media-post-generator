@@ -103,7 +103,7 @@ def main():
     ], index=0)
 
     # Text area for pasting text for analyzing communication style
-    example_text_for_style = st.text_area('Or paste text for analyzing communication style',max_chars=500, key="example_style")
+    example_text_for_style = st.text_area('Or paste example text to copy the tone of voice & communication style to your post',max_chars=500, key="example_style")
 
     # Dropdown for selecting the language
     language = st.selectbox('Language', [
