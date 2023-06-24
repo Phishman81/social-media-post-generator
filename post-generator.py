@@ -2,13 +2,13 @@ import streamlit as st
 import openai
 
 def check_password():
-    """Returns `True` if the user had a correct password."""
+    """Returns `True` if the user entered the correct password."""
 
     def password_entered():
         """Checks whether a password entered by the user is correct."""
         if st.session_state["password"] == st.secrets["password"]:
             st.session_state["password_correct"] = True
-            del st.session_state["password"]  # don't store password
+            del st.session_state["password"]  # don't store the password
         else:
             st.session_state["password_correct"] = False
 
@@ -31,6 +31,8 @@ def check_password():
 
 # Streamlit application
 def main():
+    if not check_password():
+        return
 
     st.title('Social Media Post Generator with GPT-4')
 
