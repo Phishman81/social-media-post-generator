@@ -4,6 +4,20 @@ import openai
 # Set the page title
 st.set_page_config(page_title="Social Media Post Generator with GPT-4")
 
+def add_bg_from_url():
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("https://cdn.midjourney.com/72ec66d9-bad1-4599-96c4-e709a27243f2/0_0.webp");
+            background-attachment: fixed;
+            background-size: cover;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
 def check_password():
     """Returns `True` if the user entered the correct password."""
 
@@ -44,6 +58,9 @@ def show_intro_text():
 
 # Streamlit application
 def main():
+
+    add_bg_from_url()  # Add the background image
+   
     if not check_password():
         return
 
