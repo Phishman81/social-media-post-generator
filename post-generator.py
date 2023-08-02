@@ -37,8 +37,9 @@ def check_password():
         return True
 
 def show_intro_text():
-    st.write("Welcome to the Social Media Post Generator with GPT-4! This app helps you effortlessly create engaging and compelling social media posts for platforms like LinkedIn, Instagram, Facebook, YouTube, TikTok, Snapchat, and Google Profile Page. Simply enter the topic of your post, the goal you want to achieve, the target group you're aiming for, and other preferences like content length, hashtags, emojis, list type, hook style, and communication style.")
+    st.write("This is a Social Media Post Generator with GPT-4! This app helps you effortlessly create engaging and compelling social media posts for platforms like LinkedIn, Instagram, Facebook, YouTube, TikTok, Snapchat, and Google Profile Page. Simply enter the topic of your post, the goal you want to achieve, the target group you're aiming for, and other preferences like content length, hashtags, emojis, list type, hook style, and communication style.")
     st.write("Using the power of GPT-4, the app generates high-quality posts tailored to your specifications. This saves you time and effort, as you no longer need to write each post from scratch. The generated posts capture the desired tone, writing style, and even replicate the author's voice when provided with an example text.")
+    st.write("You can write in any language you like.")
     st.write("")
 
 # Streamlit application
@@ -58,7 +59,7 @@ def main():
     # Input field for the desired post topic
     post_topic = st.text_input(f'In a few words: What is the general topic of your {platform} post?', max_chars=400)
 
-    # Input field for the desired post details: post_details = st.text_input(f'What do you want your {platform} post to be about? You can and should be verx specific here.', max_chars=2000)
+    # Input field for the desired post details: post_details = st.text_input(f'What do you want your {platform} post to be about? You can and should be very specific here.', max_chars=2000)
     post_details = st.text_area(f'What do you want your {platform} post to be about? You can and should be verx specific here.', max_chars=2000)
     # post_details = st.text_area('Or paste example text to copy the tone of voice & communication style to your post',max_chars=500, key="example_style")
 
