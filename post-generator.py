@@ -61,7 +61,7 @@ def main():
     post_goal = st.text_input('What is the goal of your post? (e.g., reach, getting leads, etc.)')
 
     # Input field for the call-to-action
-    call-to-action = st.text_input(f'What should the call to action be?', max_chars=400)
+    call_to_action = st.text_input(f'What should the call to action be?', max_chars=400)
 
     # Dropdown for selecting the content length
     content_length = st.selectbox('Choose your content length', ['Short: less than 80 characters', 'Compact: 80-250 characters', 'Medium: 250-600 characters', 'Long: more than 600 characters'])
@@ -149,10 +149,10 @@ def main():
 
             if example_text_for_style:
                 # Use example text for style if provided
-                prompt_text = f"Act as a highly experienced {platform} professional and craft a very compelling and interesting {platform} post out of the following information: the general topic of the post is: {post_topic}. Here are some specific details about the post content: {post_details}. The call-to-action should be: {call-to-action}. The target group is {target_group}. The goal of the post is {post_goal}. The selected language is {language}. Using the {hook_style}, the desired content length is {content_length}, with a preference for {hashtags} hashtags that suit the target group, {emojis} emojis, and a {list_type}. Please structure the post in the following way {post_structure}. In your response, capture the same tone and writing style and replicate the author's voice and how they express themselves in this text example: {example_text_for_style} - without incorporating any of the examples content."
+                prompt_text = f"Act as a highly experienced {platform} professional and craft a very compelling and interesting {platform} post out of the following information: the general topic of the post is: {post_topic}. Here are some specific details about the post content: {post_details}. The call-to-action should be: {call_to_action}. The target group is {target_group}. The goal of the post is {post_goal}. The selected language is {language}. Using the {hook_style}, the desired content length is {content_length}, with a preference for {hashtags} hashtags that suit the target group, {emojis} emojis, and a {list_type}. Please structure the post in the following way {post_structure}. In your response, capture the same tone and writing style and replicate the author's voice and how they express themselves in this text example: {example_text_for_style} - without incorporating any of the examples content."
             else:
                 # Use the selected communication style otherwise
-                prompt_text = f"Act as a highly experienced {platform} professional and craft a very compelling and interesting {platform} post out of the following information: the general topic of the post is: {post_topic}. Here are some specific details about the post content: {post_details}. The call-to-action should be: {call-to-action}. The target group is {target_group}. The goal of the post is {post_goal}. The communication style is {communication_style}. The selected language is {language}. Using the {hook_style}, the desired content length is {content_length}, with a preference for {hashtags} hashtags that suit the target group, {emojis} emojis, and a {list_type}. Please structure the post in the following way {post_structure}."
+                prompt_text = f"Act as a highly experienced {platform} professional and craft a very compelling and interesting {platform} post out of the following information: the general topic of the post is: {post_topic}. Here are some specific details about the post content: {post_details}. The call-to-action should be: {call_to_action}. The target group is {target_group}. The goal of the post is {post_goal}. The communication style is {communication_style}. The selected language is {language}. Using the {hook_style}, the desired content length is {content_length}, with a preference for {hashtags} hashtags that suit the target group, {emojis} emojis, and a {list_type}. Please structure the post in the following way {post_structure}."
 
             # Generate the post using GPT-4
             try:
