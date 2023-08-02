@@ -1,6 +1,9 @@
 import streamlit as st
 import openai
 
+# Set the page title
+st.set_page_config(page_title="Social Media Post Generator with GPT-4")
+
 def check_password():
     """Returns `True` if the user entered the correct password."""
 
