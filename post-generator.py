@@ -58,6 +58,9 @@ def show_intro_text():
 
 # Streamlit application
 def main():
+
+    add_bg_from_url()  # Add the background image
+   
     if not check_password():
         return
 
