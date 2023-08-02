@@ -105,6 +105,9 @@ def main():
     # Text area for pasting text for analyzing communication style
     example_text_for_style = st.text_area('Or paste example text to copy the tone of voice & communication style to your post',max_chars=500, key="example_style")
 
+    # Input field for the post structure
+    post_structure = st.text_input('How should the post be strucutured? (e.g., hook, story, important learnings as list, call to action, etc.)')
+
     # Dropdown for selecting the language
     language = st.selectbox('Language', [
         'German',
@@ -139,10 +142,10 @@ def main():
 
             if example_text_for_style:
                 # Use example text for style if provided
-                prompt_text = f"Act as a highly experienced {platform} professional and craft a very compelling and interesting {platform} post out of the following information: {post_topic} The target group is {target_group}. The goal of the post is {post_goal}. The selected language is {language}. Using the {hook_style}, the desired content length is {content_length}, with a preference for {hashtags} hashtags, {emojis} emojis, and a {list_type}. In your response, capture the same tone and writing style and replicate the author's voice and how they express themselves in this text example: {example_text_for_style} - without incorporating any of the examples content."
+                prompt_text = f"Act as a highly experienced {platform} professional and craft a very compelling and interesting {platform} post out of the following information: {post_topic} The target group is {target_group}. The goal of the post is {post_goal}. The selected language is {language}. Using the {hook_style}, the desired content length is {content_length}, with a preference for {hashtags} hashtags that suit the target group, {emojis} emojis, and a {list_type}. Please structure the post in the following way {post_structure}. In your response, capture the same tone and writing style and replicate the author's voice and how they express themselves in this text example: {example_text_for_style} - without incorporating any of the examples content."
             else:
                 # Use the selected communication style otherwise
-                prompt_text = f"Act as a highly experienced {platform} professional and craft a very compelling and interesting {platform} post out of the following information: {post_topic} The target group is {target_group}. The goal of the post is {post_goal}. The communication style is {communication_style}. The selected language is {language}. Using the {hook_style}, the desired content length is {content_length}, with a preference for {hashtags} hashtags, {emojis} emojis, and a {list_type}."
+                prompt_text = f"Act as a highly experienced {platform} professional and craft a very compelling and interesting {platform} post out of the following information: {post_topic} The target group is {target_group}. The goal of the post is {post_goal}. The communication style is {communication_style}. The selected language is {language}. Using the {hook_style}, the desired content length is {content_length}, with a preference for {hashtags} hashtags that suit the target group, {emojis} emojis, and a {list_type}. Please structure the post in the following way {post_structure}."
 
             # Generate the post using GPT-4
             try:
