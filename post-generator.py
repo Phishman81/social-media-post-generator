@@ -51,7 +51,10 @@ def main():
     platform = st.selectbox('Choose your social media platform', ['LinkedIn', 'Instagram', 'Facebook', 'YouTube', 'TikTok', 'Snapchat', 'Google Profile Page'])
 
     # Input field for the desired post topic
-    post_topic = st.text_input(f'What do you want your {platform} post to be about?', max_chars=400)
+    post_topic = st.text_input(f'In a few words: What is the general topic of your {platform} post?', max_chars=400)
+
+    # Input field for the desired post details
+    post_details = st.text_input(f'What do you want your {platform} post to be about? You can and should be verx specific here.', max_chars=2000)
 
     # Input field for the goal of the post
     post_goal = st.text_input('What is the goal of your post? (e.g., reach, getting leads, etc.)')
@@ -106,7 +109,7 @@ def main():
     example_text_for_style = st.text_area('Or paste example text to copy the tone of voice & communication style to your post',max_chars=500, key="example_style")
 
     # Input field for the post structure
-    post_structure = st.text_input('How should the post be strucutured? (e.g., hook, story, important learnings as list, call to action, etc.)')
+    post_structure = st.text_input('How should the post be structured? (e.g., hook, story, important learnings as list, call to action, etc.)')
 
     # Dropdown for selecting the language
     language = st.selectbox('Language', [
@@ -142,10 +145,10 @@ def main():
 
             if example_text_for_style:
                 # Use example text for style if provided
-                prompt_text = f"Act as a highly experienced {platform} professional and craft a very compelling and interesting {platform} post out of the following information: {post_topic} The target group is {target_group}. The goal of the post is {post_goal}. The selected language is {language}. Using the {hook_style}, the desired content length is {content_length}, with a preference for {hashtags} hashtags that suit the target group, {emojis} emojis, and a {list_type}. Please structure the post in the following way {post_structure}. In your response, capture the same tone and writing style and replicate the author's voice and how they express themselves in this text example: {example_text_for_style} - without incorporating any of the examples content."
+                prompt_text = f"Act as a highly experienced {platform} professional and craft a very compelling and interesting {platform} post out of the following information: the general topic of the post is: {post_topic}. Here are some specific details about the post content: {post_details}. The target group is {target_group}. The goal of the post is {post_goal}. The selected language is {language}. Using the {hook_style}, the desired content length is {content_length}, with a preference for {hashtags} hashtags that suit the target group, {emojis} emojis, and a {list_type}. Please structure the post in the following way {post_structure}. In your response, capture the same tone and writing style and replicate the author's voice and how they express themselves in this text example: {example_text_for_style} - without incorporating any of the examples content."
             else:
                 # Use the selected communication style otherwise
-                prompt_text = f"Act as a highly experienced {platform} professional and craft a very compelling and interesting {platform} post out of the following information: {post_topic} The target group is {target_group}. The goal of the post is {post_goal}. The communication style is {communication_style}. The selected language is {language}. Using the {hook_style}, the desired content length is {content_length}, with a preference for {hashtags} hashtags that suit the target group, {emojis} emojis, and a {list_type}. Please structure the post in the following way {post_structure}."
+                prompt_text = f"Act as a highly experienced {platform} professional and craft a very compelling and interesting {platform} post out of the following information: the general topic of the post is: {post_topic}. Here are some specific details about the post content: {post_details}. The target group is {target_group}. The goal of the post is {post_goal}. The communication style is {communication_style}. The selected language is {language}. Using the {hook_style}, the desired content length is {content_length}, with a preference for {hashtags} hashtags that suit the target group, {emojis} emojis, and a {list_type}. Please structure the post in the following way {post_structure}."
 
             # Generate the post using GPT-4
             try:
