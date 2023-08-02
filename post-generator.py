@@ -53,8 +53,9 @@ def main():
     # Input field for the desired post topic
     post_topic = st.text_input(f'In a few words: What is the general topic of your {platform} post?', max_chars=400)
 
-    # Input field for the desired post details
-    post_details = st.text_input(f'What do you want your {platform} post to be about? You can and should be verx specific here.', max_chars=2000)
+    # Input field for the desired post details: post_details = st.text_input(f'What do you want your {platform} post to be about? You can and should be verx specific here.', max_chars=2000)
+    post_details = st.text_area('What do you want your {platform} post to be about? You can and should be verx specific here.', max_chars=2000)
+    # post_details = st.text_area('Or paste example text to copy the tone of voice & communication style to your post',max_chars=500, key="example_style")
 
     # Input field for the goal of the post
     post_goal = st.text_input('What is the goal of your post? (e.g., reach, getting leads, etc.)')
