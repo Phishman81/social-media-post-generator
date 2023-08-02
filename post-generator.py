@@ -4,6 +4,20 @@ import openai
 # Set the page title
 st.set_page_config(page_title="Social Media Post Generator with GPT-4")
 
+def add_bg_from_url():
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("https://cdn.pixabay.com/photo/2019/04/24/11/27/flowers-4151900_960_720.jpg");
+            background-attachment: fixed;
+            background-size: cover;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
 def check_password():
     """Returns `True` if the user entered the correct password."""
 
