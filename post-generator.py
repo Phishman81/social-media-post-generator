@@ -15,9 +15,7 @@ def check_password():
     if "password_correct" not in st.session_state:
         # First run, show input for password.
         st.title('Social Media Post Generator with GPT-4')
-        st.write("Welcome to the Social Media Post Generator with GPT-4! This app helps you effortlessly create engaging and compelling social media posts for platforms like LinkedIn, Instagram, Facebook, YouTube, TikTok, Snapchat, and Google Profile Page. Simply enter the topic of your post, the goal you want to achieve, the target group you're aiming for, and other preferences like content length, hashtags, emojis, list type, hook style, and communication style.")
-        st.write("Using the power of GPT-4, the app generates high-quality posts tailored to your specifications. This saves you time and effort, as you no longer need to write each post from scratch. The generated posts capture the desired tone, writing style, and even replicate the author's voice when provided with an example text.")
-        st.write("")
+        show_intro_text()
         st.text_input(
             "Password", type="password", on_change=password_entered, key="password"
         )
@@ -25,9 +23,7 @@ def check_password():
     elif not st.session_state["password_correct"]:
         # Password not correct, show input + error.
         st.title('Social Media Post Generator with GPT-4')
-        st.write("Welcome to the Social Media Post Generator with GPT-4! This app helps you effortlessly create engaging and compelling social media posts for platforms like LinkedIn, Instagram, Facebook, YouTube, TikTok, Snapchat, and Google Profile Page. Simply enter the topic of your post, the goal you want to achieve, the target group you're aiming for, and other preferences like content length, hashtags, emojis, list type, hook style, and communication style.")
-        st.write("Using the power of GPT-4, the app generates high-quality posts tailored to your specifications. This saves you time and effort, as you no longer need to write each post from scratch. The generated posts capture the desired tone, writing style, and even replicate the author's voice when provided with an example text.")
-        st.write("")
+        show_intro_text()
         st.text_input(
             "Password", type="password", on_change=password_entered, key="password"
         )
@@ -37,12 +33,18 @@ def check_password():
         # Password correct.
         return True
 
+def show_intro_text():
+    st.write("Welcome to the Social Media Post Generator with GPT-4! This app helps you effortlessly create engaging and compelling social media posts for platforms like LinkedIn, Instagram, Facebook, YouTube, TikTok, Snapchat, and Google Profile Page. Simply enter the topic of your post, the goal you want to achieve, the target group you're aiming for, and other preferences like content length, hashtags, emojis, list type, hook style, and communication style.")
+    st.write("Using the power of GPT-4, the app generates high-quality posts tailored to your specifications. This saves you time and effort, as you no longer need to write each post from scratch. The generated posts capture the desired tone, writing style, and even replicate the author's voice when provided with an example text.")
+    st.write("")
+
 # Streamlit application
 def main():
     if not check_password():
         return
 
     st.title('Social Media Post Generator with GPT-4')
+    show_intro_text()
 
     # Input field for user's OpenAI API key
     openai_api_key = st.secrets["openai"]["key"]
