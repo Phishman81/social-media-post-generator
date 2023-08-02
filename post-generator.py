@@ -9,7 +9,7 @@ def add_bg_from_url():
         f"""
         <style>
         .stApp {{
-            background-image: url("https://cdn.midjourney.com/6a6876f7-0947-41b7-9e15-aeb0988ed0cc/0_0.webp");
+            background-image: url("https://cdn.midjourney.com/2acbbb31-62ba-4d99-91d9-7b2b43764777/0_0.webp");
             background-attachment: fixed;
             background-size: cover;
         }}
